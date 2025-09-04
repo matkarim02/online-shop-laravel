@@ -19,7 +19,7 @@ class UserController
     }
     public function signUp(SignUpRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $user = User::query()->create([
             'name' => $data['name'],
@@ -39,10 +39,11 @@ class UserController
 
     public function login(LoginRequest $request)
     {
+        $data = $request->validated();
 
         $result = Auth::attempt([
-            'email' => $request->get('username'),
-            'password' => $request->get('password'),
+            'email' => $data['username'],
+            'password' => $data['password'],
         ]);
 
 

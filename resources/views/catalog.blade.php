@@ -299,6 +299,7 @@
 
                 <div class="product-controls">
                     <form class="cart-decreaser" method="POST" onsubmit="return false">
+                        @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="amount" class="amount-field" value="1">
                         <button type="submit" class="form-button">−</button>
@@ -307,6 +308,7 @@
                     <span class="amount-field">{{ $product->user_product->amount }}</span>
 
                     <form class="cart-increase" method="POST" onsubmit="return false">
+                        @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="amount" class="amount-field" value="1">
                         <button type="submit" class="form-button">+</button>
@@ -325,25 +327,26 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
     $(document).ready(function() {
-        // console.log($(this).serialize());
-
         $('.cart-increase').submit(function(e) {
-            e.preventDefault(); // предотвращаем перезагрузку страницы
+            e.preventDefault();
+
+            let form = $(this);
 
             $.ajax({
                 type: "POST",
                 url: "/cart-increase",
-                data: $(this).serialize(), // например: product_id=1&amount=10
+                data: form.serialize(),
                 dataType: 'json',
                 success: function(response) {
-                    console.log('test');
-                    // Обновляем количество товаров в бейдже корзины
-                    $('.amount-field').text(response.amount);
+                    // Обновляем только количество внутри текущей карточки
+                    form.closest('.product-controls').find('.amount-field').text(response.amount);
                 },
                 error: function(xhr, status, error) {
-                    console.error('Ошибка при добавлении товара:', error);
+                    console.error('Ошибка при увеличении товара:', error);
                 }
             });
         });
@@ -353,28 +356,81 @@
 
 <script>
     $(document).ready(function() {
-        // console.log($(this).serialize());
-
         $('.cart-decreaser').submit(function(e) {
-            e.preventDefault(); // предотвращаем перезагрузку страницы
+            e.preventDefault();
+
+            let form = $(this);
 
             $.ajax({
                 type: "POST",
                 url: "/cart-decrease",
-                data: $(this).serialize(), // например: product_id=1&amount=10
+                data: form.serialize(),
                 dataType: 'json',
                 success: function(response) {
-                    console.log('test');
-                    // Обновляем количество товаров в бейдже корзины
-                    $('.amount-field').text(response.amount);
+                    // Обновляем только количество внутри текущей карточки
+                    form.closest('.product-controls').find('.amount-field').text(response.amount);
                 },
                 error: function(xhr, status, error) {
-                    console.error('Ошибка при добавлении товара:', error);
+                    console.error('Ошибка при уменьшении товара:', error);
                 }
             });
         });
     });
 </script>
+
+
+
+
+{{--<script>--}}
+{{--    $(document).ready(function() {--}}
+{{--        // console.log($(this).serialize());--}}
+
+{{--        $('.cart-increase').submit(function(e) {--}}
+{{--            e.preventDefault(); // предотвращаем перезагрузку страницы--}}
+
+{{--            $.ajax({--}}
+{{--                type: "POST",--}}
+{{--                url: "/cart-increase",--}}
+{{--                data: $(this).serialize(), // например: product_id=1&amount=10--}}
+{{--                dataType: 'json',--}}
+{{--                success: function(response) {--}}
+{{--                    console.log('test');--}}
+{{--                    // Обновляем количество товаров в бейдже корзины--}}
+{{--                    $('.amount-field').text(response.amount);--}}
+{{--                },--}}
+{{--                error: function(xhr, status, error) {--}}
+{{--                    console.error('Ошибка при добавлении товара:', error);--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
+
+
+{{--<script>--}}
+{{--    $(document).ready(function() {--}}
+{{--        // console.log($(this).serialize());--}}
+
+{{--        $('.cart-decreaser').submit(function(e) {--}}
+{{--            e.preventDefault(); // предотвращаем перезагрузку страницы--}}
+
+{{--            $.ajax({--}}
+{{--                type: "POST",--}}
+{{--                url: "/cart-decrease",--}}
+{{--                data: $(this).serialize(), // например: product_id=1&amount=10--}}
+{{--                dataType: 'json',--}}
+{{--                success: function(response) {--}}
+{{--                    console.log('test');--}}
+{{--                    // Обновляем количество товаров в бейдже корзины--}}
+{{--                    $('.amount-field').text(response.amount);--}}
+{{--                },--}}
+{{--                error: function(xhr, status, error) {--}}
+{{--                    console.error('Ошибка при добавлении товара:', error);--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
 
 </body>
 </html>
