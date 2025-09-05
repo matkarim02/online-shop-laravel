@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignUpRequest;
 use App\Models\User;
@@ -70,6 +71,62 @@ class UserController
 
         // Перенаправляем пользователя на главную страницу или страницу входа.
         return redirect('/login');
+    }
+
+    public function getProfile()
+    {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect('/login');
+        }
+
+        return view('profile', compact('user'));
+    }
+
+
+
+
+    public function getEditProfile()
+    {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect('/login');
+        }
+
+        return view('edit_profile', compact('user'));
+    }
+
+
+
+
+    public function editProfile(EditProfileRequest $request)
+    {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect('/login');
+        }
+
+        $data = $request->validated();
+
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        if(!empty($data['password'])){
+            $user->password = Hash::make($data['password']);
+        }
+
+        $user->save();
+
+//        User::query()->where('id', $user->id)
+//                    ->update([
+//                        'name' => $data['name'],
+//                        'email' => $data['email'],
+//                        'password' => $data['password'],
+//                    ]);
+
+        return redirect('/profile')->with('success', 'Профиль обновлен!');
     }
 
 
