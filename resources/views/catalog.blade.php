@@ -317,6 +317,7 @@
 
                 <div class="go-to-cart">
                     <form action="/product" method="POST">
+                        @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <button type="submit" class="form-button">Перейти</button>
                     </form>
@@ -378,59 +379,6 @@
     });
 </script>
 
-
-
-
-{{--<script>--}}
-{{--    $(document).ready(function() {--}}
-{{--        // console.log($(this).serialize());--}}
-
-{{--        $('.cart-increase').submit(function(e) {--}}
-{{--            e.preventDefault(); // предотвращаем перезагрузку страницы--}}
-
-{{--            $.ajax({--}}
-{{--                type: "POST",--}}
-{{--                url: "/cart-increase",--}}
-{{--                data: $(this).serialize(), // например: product_id=1&amount=10--}}
-{{--                dataType: 'json',--}}
-{{--                success: function(response) {--}}
-{{--                    console.log('test');--}}
-{{--                    // Обновляем количество товаров в бейдже корзины--}}
-{{--                    $('.amount-field').text(response.amount);--}}
-{{--                },--}}
-{{--                error: function(xhr, status, error) {--}}
-{{--                    console.error('Ошибка при добавлении товара:', error);--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
-
-
-{{--<script>--}}
-{{--    $(document).ready(function() {--}}
-{{--        // console.log($(this).serialize());--}}
-
-{{--        $('.cart-decreaser').submit(function(e) {--}}
-{{--            e.preventDefault(); // предотвращаем перезагрузку страницы--}}
-
-{{--            $.ajax({--}}
-{{--                type: "POST",--}}
-{{--                url: "/cart-decrease",--}}
-{{--                data: $(this).serialize(), // например: product_id=1&amount=10--}}
-{{--                dataType: 'json',--}}
-{{--                success: function(response) {--}}
-{{--                    console.log('test');--}}
-{{--                    // Обновляем количество товаров в бейдже корзины--}}
-{{--                    $('.amount-field').text(response.amount);--}}
-{{--                },--}}
-{{--                error: function(xhr, status, error) {--}}
-{{--                    console.error('Ошибка при добавлении товара:', error);--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
 
 </body>
 </html>

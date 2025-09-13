@@ -10,4 +10,9 @@ class Product extends Model
     {
         return $this->hasMany(UserProduct::class);
     }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

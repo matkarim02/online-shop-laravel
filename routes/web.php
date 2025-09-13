@@ -28,4 +28,7 @@ Route::get('/cart', [CartController::class, 'getCart']);
 Route::post('/cart-increase', [CartController::class, 'increaseProduct']);
 Route::post('/cart-decrease', [CartController::class, 'decreaseProduct']);
 
+Route::post('/product', [ProductController::class, 'getProduct']);
+Route::post('/add-review', [ProductController::class, 'addReview']);
+
 
