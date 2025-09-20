@@ -275,7 +275,7 @@
             <div class="user-info">
                 <span>Мой профиль</span>
             </div>
-            <form action="/logout" method="POST">
+            <form action="{{route('logout')}}" method="POST">
                 @csrf
                 <button type="submit" class="logout-btn">Выйти из аккаунта</button>
             </form>
@@ -285,7 +285,7 @@
 
 <!-- Wrapped form in main-content container -->
 <main class="main-content">
-    <form class="profile-container" action="/editProfile" method="POST">
+    <form class="profile-container" action="{{route('post.editProfile')}}" method="POST">
         @csrf
         <div class="profile-header">
             <div class="profile-img-container">

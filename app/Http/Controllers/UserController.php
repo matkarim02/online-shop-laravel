@@ -77,10 +77,6 @@ class UserController
     {
         $user = Auth::user();
 
-        if(!$user){
-            return redirect('/login');
-        }
-
         return view('profile', compact('user'));
     }
 
@@ -91,10 +87,6 @@ class UserController
     {
         $user = Auth::user();
 
-        if(!$user){
-            return redirect('/login');
-        }
-
         return view('edit_profile', compact('user'));
     }
 
@@ -104,10 +96,6 @@ class UserController
     public function editProfile(EditProfileRequest $request)
     {
         $user = Auth::user();
-
-        if(!$user){
-            return redirect('/login');
-        }
 
         $data = $request->validated();
 

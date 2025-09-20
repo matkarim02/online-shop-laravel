@@ -394,7 +394,7 @@
                 <i class="fas fa-user"></i>
                 <span>Мой профиль</span>
             </a>
-            <form action="/logout" method="POST">
+            <form action="{{route('logout')}}" method="POST">
                 @csrf
                 <button type="submit" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i>
@@ -469,7 +469,7 @@
             <!-- Modern review form with better UX -->
             <div class="review-form">
                 <h3><i class="fas fa-edit"></i> Оставить отзыв</h3>
-                <form action="/add-review" method="POST">
+                <form action="{{route('add-review')}}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="author" class="form-label">Ваше имя</label>

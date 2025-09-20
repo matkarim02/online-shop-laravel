@@ -275,7 +275,7 @@
             <a href="/profile">Мой профиль</a>
             <a href="/cart">Корзина</a>
         </div>
-        <form action="/logout" method="POST">
+        <form action="{{route('logout')}}" method="POST">
             @csrf
             <button type="submit" class="logout-btn">Выйти</button>
         </form>
@@ -316,7 +316,7 @@
                 </div>
 
                 <div class="go-to-cart">
-                    <form action="/product" method="POST">
+                    <form action="{{route('product')}}" method="POST">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <button type="submit" class="form-button">Перейти</button>
@@ -339,7 +339,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/cart-increase",
+                url: "{{route('cart-increase')}}",
                 data: form.serialize(),
                 dataType: 'json',
                 success: function(response) {
@@ -364,7 +364,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/cart-decrease",
+                url: "{{route('cart-decrease')}}",
                 data: form.serialize(),
                 dataType: 'json',
                 success: function(response) {

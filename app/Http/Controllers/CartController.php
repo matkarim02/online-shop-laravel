@@ -14,10 +14,6 @@ class CartController
     {
         $user = Auth::user();
 
-        if (!$user) {
-            return redirect('/login');
-        }
-
         $userProducts = UserProduct::query()->with('product')
                                             ->where('user_id' , $user->id)
                                             ->get();
@@ -39,9 +35,6 @@ class CartController
     public function increaseProduct(IncreaseProductRequest $request)
     {
         $user = Auth::user();
-        if(!$user){
-            return redirect('/login');
-        }
 
         $data = $request->validated();
 
@@ -71,9 +64,6 @@ class CartController
     public function decreaseProduct(DecreaseProductRequest $request)
     {
         $user = Auth::user();
-        if(!$user){
-            return redirect('/login');
-        }
 
         $data = $request->validated();
 

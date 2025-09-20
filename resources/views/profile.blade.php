@@ -273,7 +273,7 @@
         </div>
 
         <a href="/editProfile" class="btn primary-btn">Редактировать профиль</a>
-        <form action="/logout" method="POST">
+        <form action="{{route('logout')}}" method="POST">
             @csrf
             <button type="submit" class="logout-btn">Выйти из аккаунта</button>
         </form>

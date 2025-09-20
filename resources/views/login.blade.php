@@ -183,7 +183,7 @@
     </div>
     <!-- backbox -->
     <div class="frontbox">
-        <form class="login" action = '/login' method="POST">
+        <form class="login" action ='{{route('post.login')}}' method="POST">
             @csrf
 
             <h2>Вход</h2>

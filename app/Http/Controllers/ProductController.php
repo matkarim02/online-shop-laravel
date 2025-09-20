@@ -15,10 +15,6 @@ class ProductController
     {
         $user = Auth::user();
 
-        if (!$user) {
-            return redirect('/login');
-        }
-
         $userId = Auth::id();
         $products = Product::all();
 
@@ -47,10 +43,6 @@ class ProductController
     {
         $user = Auth::user();
 
-        if(!$user) {
-            return redirect('/login');
-        }
-
         $productId = $request->validated()['product_id'];
 
         $product = Product::query()->find($productId);
@@ -72,10 +64,6 @@ class ProductController
     public function addReview(AddReviewRequest $request)
     {
         $user = Auth::user();
-
-        if(!$user){
-            return redirect('/login');
-        }
 
         $data = $request->validated();
 

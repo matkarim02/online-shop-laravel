@@ -157,7 +157,7 @@
     </style>
 </head>
 <body>
-<form action="/signUp" method="POST">
+<form action="{{route('post.signUp')}}" method="POST">
     @csrf
 
     <div class="container">

@@ -301,7 +301,7 @@
                 <i class="fas fa-user"></i>
                 <span>Мой профиль</span>
             </a>
-            <form action="/logout" method="POST">
+            <form action="{{route('logout')}}" method="POST">
                 @csrf
                 <button type="submit" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i>
