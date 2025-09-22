@@ -39,17 +39,14 @@ class ProductController
         return view('catalog', compact('newProducts'));
     }
 
-    public function getProduct(GetProductRequest $request)
+    public function getProduct(int $id)
     {
-        $user = Auth::user();
 
-        $productId = $request->validated()['product_id'];
-
-        $product = Product::query()->find($productId);
+        $product = Product::query()->find($id);
 
         $product_reviews = Review::query()->with('product')
-                                        ->where('product_id', $productId)
-                                        ->get();
+            ->where('product_id', $id)
+            ->get();
 
         $avgRating = $product_reviews->avg('rating');
 

@@ -14,12 +14,10 @@ class CartController
     {
         $user = Auth::user();
 
-        $userProducts = UserProduct::query()->with('product')
-                                            ->where('user_id' , $user->id)
-                                            ->get();
+        $userProducts = $user->userProducts()->with('product')->get();
 
         if($userProducts->isEmpty()){
-            return redirect('/catalog');
+            return redirect('/catalog')->with('message', 'Ваша корзина пуста.');
         }
 
         $total = 0;

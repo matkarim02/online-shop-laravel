@@ -28,7 +28,7 @@ Route::middleware('auth')->get('/cart', [CartController::class, 'getCart'])->nam
 Route::middleware('auth')->post('/cart-increase', [CartController::class, 'increaseProduct'])->name('cart-increase');
 Route::middleware('auth')->post('/cart-decrease', [CartController::class, 'decreaseProduct'])->name('cart-decrease');
 
-Route::middleware('auth')->post('/product', [ProductController::class, 'getProduct'])->name('product');
+Route::middleware('auth')->get('/product/{id}', [ProductController::class, 'getProduct'])->name('product');
 Route::middleware('auth')->post('/add-review', [ProductController::class, 'addReview'])->name('add-review');
 
 

@@ -12,4 +12,14 @@ class User extends BaseUser
       'email',
       'password'
     ];
+
+    public function userProducts()
+    {
+        return $this->hasMany(UserProduct::class);
+    }
+
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class, UserProduct::class, 'user_id', 'id', 'id', 'product_id');
+    }
 }

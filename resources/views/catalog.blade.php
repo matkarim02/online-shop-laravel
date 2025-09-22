@@ -316,9 +316,8 @@
                 </div>
 
                 <div class="go-to-cart">
-                    <form action="{{route('product')}}" method="POST">
+                    <form action="{{route('product', $product->id)}}" method="GET">
                         @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <button type="submit" class="form-button">Перейти</button>
                     </form>
                 </div>
